@@ -1,9 +1,9 @@
-import NxWelcome from './nx-welcome';
+import MeetingInterface from './meeting-interface';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="@fireflies/client" />
+      <MeetingInterface />
     </div>
   );
 }
