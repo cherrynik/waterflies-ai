@@ -1,9 +1,9 @@
-import MeetingInterface from './meeting-interface';
+import { MeetingScreen } from './screens';
 
 export function App() {
   return (
     <div>
-      <MeetingInterface />
+      <MeetingScreen />
     </div>
   );
 }
