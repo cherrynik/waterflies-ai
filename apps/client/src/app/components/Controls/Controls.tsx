@@ -1,7 +1,7 @@
-import { Square, Voicemail, PhoneOff, Video, VideoOff, Mic, MicOff } from 'lucide-react';
+import { Square, Voicemail, PhoneOff, Mic, MicOff } from 'lucide-react';
 import { ControlsProps } from './types';
 
-export function Controls({ isRecording, isVideoOn, isAudioOn, onStartRecording, onStopRecording, onEndCall, onToggleVideo, onToggleAudio }: ControlsProps) {
+export function Controls({ isRecording, isAudioOn, onStartRecording, onStopRecording, onEndCall, onToggleAudio }: ControlsProps) {
   return (
     <div className="bg-gray-900 border-t border-gray-700 p-2 sm:p-4 flex justify-center flex-wrap gap-2 sm:gap-4 lg:gap-6">
       <button
@@ -16,17 +16,6 @@ export function Controls({ isRecording, isVideoOn, isAudioOn, onStartRecording, 
         )}
       </button>
 
-      <button
-        onClick={onToggleVideo}
-        className={`${isVideoOn ? 'text-green-500 hover:bg-green-500' : 'text-red-500 hover:bg-red-500'} hover:text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group`}
-        title={isVideoOn ? 'Turn off camera' : 'Turn on camera'}
-      >
-        {isVideoOn ? (
-          <Video className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-200" />
-        ) : (
-          <VideoOff className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-200" />
-        )}
-      </button>
 
       {!isRecording ? (
         <button

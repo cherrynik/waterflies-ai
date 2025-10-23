@@ -1,6 +1,7 @@
+import { Download } from 'lucide-react';
 import { HeaderProps } from './types';
 
-export function Header({ isRecording, callEnded, recordingTime }: HeaderProps) {
+export function Header({ isRecording, callEnded, recordingTime, hasRecording, onDownloadRecording, recordingEndTime }: HeaderProps) {
   return (
     <div className="bg-gray-900 border-b border-gray-700 text-white p-2 sm:p-4 flex justify-between items-center">
       <div className="flex items-center space-x-2 sm:space-x-3">
@@ -20,6 +21,18 @@ export function Header({ isRecording, callEnded, recordingTime }: HeaderProps) {
               'Not recording'
             }
           </span>
+          {hasRecording && onDownloadRecording && (
+            <button
+              onClick={onDownloadRecording}
+              className="flex items-center space-x-1 text-blue-400 hover:text-blue-300 transition-colors"
+              title="Download Last Recording"
+            >
+              <Download className="w-3 h-3" />
+              <span className="text-xs">
+                Download Last {recordingEndTime && `(${recordingEndTime})`}
+              </span>
+            </button>
+          )}
         </div>
       )}
     </div>

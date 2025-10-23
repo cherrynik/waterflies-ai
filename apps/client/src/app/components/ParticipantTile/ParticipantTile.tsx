@@ -1,7 +1,7 @@
-import { User, Mic, MicOff, Video, VideoOff, Bot } from 'lucide-react';
+import { User, Mic, MicOff, Bot } from 'lucide-react';
 import { ParticipantTileProps } from './types';
 
-export function ParticipantTile({ participant, index, isCurrentUserVideoOn, isCurrentUserAudioOn }: ParticipantTileProps) {
+export function ParticipantTile({ participant, index, isCurrentUserAudioOn }: ParticipantTileProps) {
   return (
     <div
       className={`relative bg-gray-800 border border-gray-600 rounded-lg hover:bg-gray-750 transition-all duration-300 ${
@@ -29,7 +29,7 @@ export function ParticipantTile({ participant, index, isCurrentUserVideoOn, isCu
         )}
       </div>
 
-      {/* Audio/Video Status */}
+      {/* Audio Status */}
       <div className="absolute bottom-3 left-3 flex space-x-2">
         <div className="w-6 h-6 flex items-center justify-center">
           {participant.name === 'Alex Johnson (You)' ? (
@@ -43,21 +43,6 @@ export function ParticipantTile({ participant, index, isCurrentUserVideoOn, isCu
               <Mic className="w-4 h-4 text-green-500" />
             ) : (
               <MicOff className="w-4 h-4 text-red-500" />
-            )
-          )}
-        </div>
-        <div className="w-6 h-6 flex items-center justify-center">
-          {participant.name === 'Alex Johnson (You)' ? (
-            isCurrentUserVideoOn ? (
-              <Video className="w-4 h-4 text-green-500" />
-            ) : (
-              <VideoOff className="w-4 h-4 text-red-500" />
-            )
-          ) : (
-            participant.isVideoOn ? (
-              <Video className="w-4 h-4 text-green-500" />
-            ) : (
-              <VideoOff className="w-4 h-4 text-red-500" />
             )
           )}
         </div>
