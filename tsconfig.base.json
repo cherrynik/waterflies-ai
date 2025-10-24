@@ -29,7 +29,7 @@
       "@waterflies/constants/server": [
         "packages/shared/constants/src/lib/server/index.ts"
       ],
-      "@waterflies/modules": ["packages/server/modules/src/index.ts"]
+      "@waterflies/server/modules": ["packages/server/modules/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -5,7 +5,7 @@
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app/app.module';
+import { AppModule } from '@waterflies/server/modules';
 import { APP_CONFIG } from './app.config';
 
 async function bootstrap() {
