@@ -18,8 +18,12 @@
       "@waterflies/utils": ["packages/shared/utils/src/index.ts"],
       "@waterflies/client/services": ["packages/client/services/src/index.ts"],
       "@waterflies/client/hooks": ["packages/client/hooks/src/index.ts"],
-      "@waterflies/client/components": ["packages/client/components/src/index.ts"],
-      "@waterflies/client/screens": ["packages/client/screens/src/index.ts"]
+      "@waterflies/client/components": [
+        "packages/client/components/src/index.ts"
+      ],
+      "@waterflies/client/screens": ["packages/client/screens/src/index.ts"],
+      "@waterflies/server/services": ["packages/server/services/src/index.ts"],
+      "@waterflies/server/controllers": ["packages/server/controllers/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
