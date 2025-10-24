@@ -1,4 +1,4 @@
-import { ProcessingResult } from '@waterflies/services';
+import { ProcessingResult } from '@waterflies/client/services';
 
 export interface UseRecordingStateReturn {
   hasRecording: boolean;

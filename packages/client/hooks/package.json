@@ -1,5 +1,5 @@
 {
-  "name": "@waterflies/hooks",
+  "name": "@waterflies/client/hooks",
   "version": "0.0.1",
   "private": true,
   "type": "commonjs",

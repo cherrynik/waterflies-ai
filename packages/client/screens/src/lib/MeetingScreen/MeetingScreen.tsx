@@ -4,7 +4,7 @@ import {
   TranscriptView,
   Notification,
   TranscriptSkeleton,
-} from '@waterflies/components';
+} from '@waterflies/client/components';
 import { MeetingView } from '../MeetingView';
 import { PARTICIPANTS } from '@waterflies/utils';
 import {
@@ -12,7 +12,7 @@ import {
   useAutoRecording,
   useRecordingState,
   useMediaControls,
-} from '@waterflies/hooks';
+} from '@waterflies/client/hooks';
 
 export function MeetingScreen() {
   const [callEnded, setCallEnded] = useState(false);

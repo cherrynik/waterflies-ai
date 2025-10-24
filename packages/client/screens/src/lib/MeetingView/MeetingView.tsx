@@ -1,4 +1,4 @@
-import { VideoGrid, Controls } from '@waterflies/components';
+import { VideoGrid, Controls } from '@waterflies/client/components';
 import { MeetingViewProps } from './types';
 
 export function MeetingView({ 

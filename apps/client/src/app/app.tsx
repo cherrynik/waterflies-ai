@@ -1,4 +1,4 @@
-import { MeetingScreen } from '@waterflies/screens';
+import { MeetingScreen } from '@waterflies/client/screens';
 
 export function App() {
   return (

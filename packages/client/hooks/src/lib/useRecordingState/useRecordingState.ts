@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import {
   ProcessingResult,
   RecordingService,
-} from '@waterflies/services';
+} from '@waterflies/client/services';
 import { UseRecordingStateReturn } from './types';
 import { handleProcessingError } from './utils';
 

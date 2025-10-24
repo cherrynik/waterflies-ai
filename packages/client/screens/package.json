@@ -1,5 +1,5 @@
 {
-  "name": "@waterflies/screens",
+  "name": "@waterflies/client/screens",
   "version": "0.0.1",
   "private": true,
   "type": "commonjs",
