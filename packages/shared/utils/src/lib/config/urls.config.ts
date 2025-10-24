@@ -6,11 +6,10 @@
 export const URL_CONFIG = {
   // Server URLs
   server: {
-    host: process.env['SERVER_HOST'] || 'localhost',
+    hostname: process.env['SERVER_HOSTNAME'] || 'localhost',
     port: process.env['SERVER_PORT'] || '3000',
-    protocol: process.env['SERVER_PROTOCOL'] || 'http',
     get baseUrl() {
-      return `${this.protocol}://${this.host}:${this.port}`;
+      return process.env['SERVER_BASE_URL'] || `http://${this.hostname}:${this.port}`;
     },
     get apiUrl() {
       return `${this.baseUrl}/api`;
@@ -22,11 +21,10 @@ export const URL_CONFIG = {
   
   // Client URLs
   client: {
-    host: process.env['CLIENT_HOST'] || 'localhost',
+    hostname: process.env['CLIENT_HOSTNAME'] || 'localhost',
     port: process.env['CLIENT_PORT'] || '4200',
-    protocol: process.env['CLIENT_PROTOCOL'] || 'http',
     get baseUrl() {
-      return `${this.protocol}://${this.host}:${this.port}`;
+      return process.env['CLIENT_BASE_URL'] || `http://${this.hostname}:${this.port}`;
     },
   },
   
@@ -34,9 +32,9 @@ export const URL_CONFIG = {
   cors: {
     get origins() {
       return [
-        `${URL_CONFIG.client.baseUrl}`,
-        `${URL_CONFIG.server.baseUrl}`,
-        // Add production URLs if needed
+        URL_CONFIG.client.baseUrl,
+        URL_CONFIG.server.baseUrl,
+        // Add custom CORS origins
         ...(process.env['CORS_ORIGINS'] ? process.env['CORS_ORIGINS'].split(',') : []),
       ];
     },
