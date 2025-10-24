@@ -1,5 +1,5 @@
 {
-  "name": "screens",
+  "name": "client/screens",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/client/screens/src",
   "projectType": "library",
