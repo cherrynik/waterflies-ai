@@ -16,6 +16,16 @@ export default defineConfig(() => ({
     host: process.env.CLIENT_HOST || 'localhost',
   },
   plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
+  define: {
+    'process.env': {
+      'SERVER_HOSTNAME': process.env.SERVER_HOSTNAME,
+      'SERVER_PORT': process.env.SERVER_PORT,
+      'SERVER_BASE_URL': process.env.SERVER_BASE_URL,
+      'CLIENT_HOSTNAME': process.env.CLIENT_HOSTNAME,
+      'CLIENT_PORT': process.env.CLIENT_PORT,
+      'CLIENT_BASE_URL': process.env.CLIENT_BASE_URL,
+    }
+  },
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
