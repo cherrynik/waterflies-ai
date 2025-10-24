@@ -34,6 +34,8 @@ export function useAutoRecording({
   useEffect(() => {
     // Only run once on mount or when reset
     if (
+      typeof window !== 'undefined' &&
+      navigator?.mediaDevices &&
       !initializationStarted.current &&
       !micPermissionGranted &&
       !autoRecordingStarted
@@ -41,7 +43,7 @@ export function useAutoRecording({
       initializationStarted.current = true;
       requestMicPermissionAndStartRecording();
     }
-  }, [micPermissionGranted, autoRecordingStarted]); // Add dependencies to re-run when reset
+  }, [micPermissionGranted, autoRecordingStarted, window, navigator]); // Add dependencies to re-run when reset
 
   const resetAutoRecording = useCallback(() => {
     setMicPermissionGranted(false);
