@@ -1,13 +1,6 @@
-import { useTimer } from './useTimer';
-import { useRecording } from './useRecording';
-
-export interface UseRecordingTimerReturn {
-  recordingTime: number;
-  isRecording: boolean;
-  startRecording: () => void;
-  stopRecording: () => void;
-  resetTimer: () => void;
-}
+import { useTimer } from '../useTimer';
+import { useRecording } from '../useRecording';
+import { UseRecordingTimerReturn } from './types';
 
 export function useRecordingTimer(): UseRecordingTimerReturn {
   const { time, start, stop, reset } = useTimer();

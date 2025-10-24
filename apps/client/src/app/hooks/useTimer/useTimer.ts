@@ -1,12 +1,5 @@
 import { useState, useEffect } from 'react';
-
-export interface UseTimerReturn {
-  time: number;
-  isRunning: boolean;
-  start: () => void;
-  stop: () => void;
-  reset: () => void;
-}
+import { UseTimerReturn } from './types';
 
 export function useTimer(): UseTimerReturn {
   const [isRunning, setIsRunning] = useState(false);
@@ -27,15 +20,15 @@ export function useTimer(): UseTimerReturn {
 
   // Timer effect
   useEffect(() => {
-    let interval: number;
+    let interval: NodeJS.Timeout | undefined;
     if (isRunning) {
-      interval = window.setInterval(() => {
+      interval = setInterval(() => {
         setTime(prev => prev + 1);
       }, 1000);
     }
     return () => {
       if (interval) {
-        window.clearInterval(interval);
+        clearInterval(interval);
       }
     };
   }, [isRunning]);

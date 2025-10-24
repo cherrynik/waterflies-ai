@@ -1,5 +1,5 @@
 {
-  "name": "@fireflies/client",
+  "name": "@waterflies/client",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

@@ -4,9 +4,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @fireflies/server with Nx",
+      "name": "Debug @waterflies/server with Nx",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["nx", "serve", "@fireflies/server"],
+      "runtimeArgs": ["nx", "serve", "@waterflies/server"],
       "env": {
         "NODE_OPTIONS": "--inspect=9229"
       },

@@ -1,11 +1,5 @@
 import { useState } from 'react';
-
-export interface UseRecordingReturn {
-  isRecording: boolean;
-  startRecording: () => void;
-  stopRecording: () => void;
-  resetRecording: () => void;
-}
+import { UseRecordingReturn } from './types';
 
 export function useRecording(): UseRecordingReturn {
   const [isRecording, setIsRecording] = useState(false);

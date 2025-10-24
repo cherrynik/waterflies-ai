@@ -1,5 +1,5 @@
 {
-  "name": "@fireflies/server",
+  "name": "@waterflies/server",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -63,15 +63,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@fireflies/server:build",
+          "buildTarget": "@waterflies/server:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@fireflies/server:build:development"
+            "buildTarget": "@waterflies/server:build:development"
           },
           "production": {
-            "buildTarget": "@fireflies/server:build:production"
+            "buildTarget": "@waterflies/server:build:production"
           }
         }
       },
@@ -86,6 +86,9 @@
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
+    "@types/multer": "^2.0.0",
+    "multer": "^2.0.2",
+    "openai": "^6.6.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"

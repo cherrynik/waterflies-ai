@@ -27,7 +27,7 @@ export default defineConfig(() => ({
     },
   },
   test: {
-    name: '@fireflies/client',
+    name: '@waterflies/client',
     watch: false,
     globals: true,
     environment: 'jsdom',

@@ -1,10 +1,10 @@
 {
-  "name": "@fireflies/client-e2e",
+  "name": "@waterflies/client-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@fireflies/client"
+      "@waterflies/client"
     ]
   }
 }

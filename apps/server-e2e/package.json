@@ -1,10 +1,10 @@
 {
-  "name": "@fireflies/server-e2e",
+  "name": "@waterflies/server-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@fireflies/server"
+      "@waterflies/server"
     ],
     "targets": {
       "e2e": {
@@ -17,8 +17,8 @@
           "passWithNoTests": true
         },
         "dependsOn": [
-          "@fireflies/server:build",
-          "@fireflies/server:serve"
+          "@waterflies/server:build",
+          "@waterflies/server:serve"
         ]
       }
     }
