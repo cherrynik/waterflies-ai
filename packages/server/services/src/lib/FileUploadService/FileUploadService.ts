@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { appConfig } from '../config/app.config';
-import { ERROR_MESSAGES } from '../constants/app.constants';
+import { ERROR_MESSAGES } from '@waterflies/constants/server';
+import { FILE_UPLOAD_CONFIG } from './constants';
 
 type MulterCallback = (error: Error | null, result: boolean) => void;
 type FilenameCallback = (error: Error | null, filename: string) => void;
@@ -12,7 +12,7 @@ export class FileUploadService {
   static getMulterConfig() {
     return {
       storage: diskStorage({
-        destination: appConfig.fileUpload.uploadDirectory,
+        destination: FILE_UPLOAD_CONFIG.uploadDirectory,
         filename: (
           _: unknown,
           file: Express.Multer.File,
@@ -29,15 +29,15 @@ export class FileUploadService {
         file: Express.Multer.File,
         callback: MulterCallback
       ) => {
-        const isValid = appConfig.fileUpload.allowedMimeTypes.some((type) =>
-          file.mimetype.startsWith(type)
+        const isValid = FILE_UPLOAD_CONFIG.allowedMimeTypes.some(
+          (type: string) => file.mimetype.startsWith(type)
         );
         callback(
           isValid ? null : new Error(ERROR_MESSAGES.INVALID_FILE_TYPE),
           isValid
         );
       },
-      limits: { fileSize: appConfig.fileUpload.maxFileSize },
+      limits: { fileSize: FILE_UPLOAD_CONFIG.maxFileSize },
     };
   }
 

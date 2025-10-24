@@ -1,20 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
-import { ProcessingResponse } from './api.types';
-import { appConfig } from './config/app.config';
-import { OPENAI_MODELS } from './constants/app.constants';
-import { AI_PROMPTS } from './constants/prompts.constants';
-import { ErrorHandlerService } from './services/error-handler.service';
+import { ErrorHandlerService } from '../ErrorHandlerService/ErrorHandlerService';
 import { isEmpty } from 'lodash';
+import { OPENAI_MODELS, AI_PROMPTS, OPENAI_API_KEY } from './constants';
+import type { ProcessingResponse } from './types';
 
 @Injectable()
 export class AiService {
   private readonly openai: OpenAI;
 
   constructor(private readonly errorHandler: ErrorHandlerService) {
-    this.openai = new OpenAI({
-      apiKey: appConfig.openaiApiKey,
-    });
+    this.openai = new OpenAI({ apiKey: OPENAI_API_KEY });
   }
 
   async processAudio(audioFilePath: string): Promise<ProcessingResponse> {

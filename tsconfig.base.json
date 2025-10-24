@@ -23,7 +23,13 @@
       ],
       "@waterflies/client/screens": ["packages/client/screens/src/index.ts"],
       "@waterflies/server/services": ["packages/server/services/src/index.ts"],
-      "@waterflies/server/controllers": ["packages/server/controllers/src/index.ts"]
+      "@waterflies/server/controllers": [
+        "packages/server/controllers/src/index.ts"
+      ],
+      "@waterflies/constants/server": [
+        "packages/shared/constants/src/lib/server/index.ts"
+      ],
+      "@waterflies/modules": ["packages/server/modules/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

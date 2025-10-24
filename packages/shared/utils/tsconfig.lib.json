@@ -5,7 +5,7 @@
     "declaration": true,
     "types": ["node"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "../constants/src/server/app.config.ts", "../../server/services/src/lib/AiService/prompts.constants.ts"],
   "exclude": [
     "vite.config.ts",
     "vite.config.mts",

@@ -1,3 +1,10 @@
+export const OPENAI_API_KEY = process.env['OPENAI_API_KEY'] || '';
+
+export const OPENAI_MODELS = {
+  WHISPER: 'whisper-1',
+  GPT_4O_MINI: 'gpt-4o-mini',
+} as const;
+
 export const AI_PROMPTS = {
   SUMMARY: `You are a Transcription Summarization Assistant.
 

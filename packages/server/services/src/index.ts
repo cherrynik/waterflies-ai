@@ -1,1 +1,4 @@
-export * from './lib/services';
+export * from './lib/AppService';
+export * from './lib/AiService';
+export * from './lib/FileUploadService';
+export * from './lib/ErrorHandlerService';

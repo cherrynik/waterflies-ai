@@ -6,11 +6,13 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as fs from 'fs';
-import { AiService } from './ai.service';
-import { ProcessingResponse } from './api.types';
-import { FileUploadService } from './services/file-upload.service';
-import { ErrorHandlerService } from './services/error-handler.service';
-import { appConfig } from './config/app.config';
+import {
+  AiService,
+  FileUploadService,
+  ErrorHandlerService,
+  type ProcessingResponse,
+} from '@waterflies/server/services';
+import { FILE_UPLOAD_CONFIG } from '@waterflies/server/services';
 
 @Controller('recording')
 export class RecordingController {
@@ -21,7 +23,9 @@ export class RecordingController {
   ) {}
 
   @Post('process')
-  @UseInterceptors(FileInterceptor('audio', FileUploadService.getMulterConfig()))
+  @UseInterceptors(
+    FileInterceptor('audio', FileUploadService.getMulterConfig())
+  )
   async processRecording(
     @UploadedFile() file: Express.Multer.File
   ): Promise<ProcessingResponse> {
@@ -29,8 +33,10 @@ export class RecordingController {
 
     try {
       // Create uploads directory if it doesn't exist
-      if (!fs.existsSync(appConfig.fileUpload.uploadDirectory)) {
-        fs.mkdirSync(appConfig.fileUpload.uploadDirectory, { recursive: true });
+      if (!fs.existsSync(FILE_UPLOAD_CONFIG.uploadDirectory)) {
+        fs.mkdirSync(FILE_UPLOAD_CONFIG.uploadDirectory, {
+          recursive: true,
+        });
       }
 
       // Process audio using AI service

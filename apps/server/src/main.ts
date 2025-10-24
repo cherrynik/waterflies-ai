@@ -6,20 +6,20 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import { appConfig } from './app/config/app.config';
+import { APP_CONFIG } from './app.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   // Enable CORS using configuration
-  app.enableCors(appConfig.cors);
+  app.enableCors(APP_CONFIG.cors);
   
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   
-  await app.listen(appConfig.port);
+  await app.listen(APP_CONFIG.port);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${appConfig.port}/${globalPrefix}`
+    `🚀 Application is running on: http://localhost:${APP_CONFIG.port}/${globalPrefix}`
   );
 }
 

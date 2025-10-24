@@ -3,7 +3,7 @@ import {
   BadRequestException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { ERROR_MESSAGES } from '../constants/app.constants';
+import { ERROR_MESSAGES } from '@waterflies/constants/server';
 
 @Injectable()
 export class ErrorHandlerService {
