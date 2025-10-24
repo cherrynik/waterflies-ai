@@ -4,6 +4,7 @@ import { useAudioStream } from '../useAudioStream';
 import { useFileOperations } from '../useFileOperations';
 import { UseBrowserRecordingProps, UseBrowserRecordingReturn } from './types';
 import { checkRecordingSupport, handleRecordingError } from './utils';
+import { URL_CONFIG } from '@waterflies/utils';
 
 export function useBrowserRecording(props: UseBrowserRecordingProps = {}): UseBrowserRecordingReturn {
   const { 
@@ -89,7 +90,7 @@ export function useBrowserRecording(props: UseBrowserRecordingProps = {}): UseBr
   const uploadRecording = useCallback(async (blob: Blob) => {
     try {
       // Use the file operations hook for upload
-      await fileOperations.uploadFile(blob, 'http://localhost:3000/api/recording/process');
+      await fileOperations.uploadFile(blob, URL_CONFIG.server.recordingEndpoint);
     } catch (err) {
       const error = handleRecordingError(err, 'Upload failed', onError);
       setError(error.message);

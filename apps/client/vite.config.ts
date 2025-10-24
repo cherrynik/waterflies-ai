@@ -8,12 +8,12 @@ export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/client',
   server: {
-    port: 4200,
-    host: 'localhost',
+    port: parseInt(process.env.CLIENT_PORT || '4200', 10),
+    host: process.env.CLIENT_HOST || 'localhost',
   },
   preview: {
-    port: 4300,
-    host: 'localhost',
+    port: parseInt(process.env.CLIENT_PREVIEW_PORT || '4300', 10),
+    host: process.env.CLIENT_HOST || 'localhost',
   },
   plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
   // Uncomment this if you are using workers.

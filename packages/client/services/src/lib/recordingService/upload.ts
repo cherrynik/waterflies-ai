@@ -6,12 +6,13 @@ import {
   logProcessingResult,
   createStandardError,
 } from './utils';
+import { URL_CONFIG } from '@waterflies/utils';
 
 /**
  * Upload module for recording files
  */
 export class RecordingUpload {
-  private defaultEndpoint = 'http://localhost:3000/api/recording/process';
+  private defaultEndpoint = URL_CONFIG.server.recordingEndpoint;
 
   /**
    * Upload recording to backend and get processing results
