@@ -1,0 +1,19 @@
+{
+  "name": "screens",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/client/screens/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/client/screens",
+        "main": "packages/client/screens/src/index.ts",
+        "tsConfig": "packages/client/screens/tsconfig.lib.json",
+        "assets": ["packages/client/screens/*.md"]
+      }
+    }
+  }
+}

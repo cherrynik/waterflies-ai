@@ -1,0 +1,19 @@
+{
+  "name": "hooks",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/client/hooks/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/client/hooks",
+        "main": "packages/client/hooks/src/index.ts",
+        "tsConfig": "packages/client/hooks/tsconfig.lib.json",
+        "assets": ["packages/client/hooks/*.md"]
+      }
+    }
+  }
+}

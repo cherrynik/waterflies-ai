@@ -1,4 +1,4 @@
-import { MeetingScreen } from './screens';
+import { MeetingScreen } from '@waterflies/screens';
 
 export function App() {
   return (

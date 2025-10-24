@@ -1,9 +1,0 @@
-{
-  "name": "@waterflies/client",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-    "@headlessui/react": "^2.2.9",
-    "lucide-react": "^0.546.0"
-  }
-}
