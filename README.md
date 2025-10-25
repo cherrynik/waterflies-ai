@@ -122,6 +122,15 @@ OPENAI_API_KEY=your_api_key_here
 - **Frontend**: http://localhost:4200
 - **Backend**: http://localhost:3000/api
 
+### ⚠️ Important: Microphone Access
+
+**In production, microphone access only works over HTTPS!** 
+
+- ✅ **Works**: https://yourdomain.com
+- ❌ **Doesn't work**: http://yourdomain.com
+
+This is a browser security requirement. For local development, HTTP works fine, but for production deployment, you need SSL certificates.
+
 ## 📁 Project Structure
 
 This is an Nx monorepo that keeps frontend, backend, and shared code organized:
