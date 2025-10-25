@@ -1,101 +1,202 @@
-# Waterflies
+# 🦋 Waterflies - Nx Monorepo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Live Demo:
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+- IP: https://178.62.252.10
+- Domain: https://waterflies.cherrynik.com
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Table of Contents
 
-## Run tasks
+- [Tech Stack](#tech-stack)
+- [Setup](#setup)
+- [Development](#development)
+  - [Nx Commands](#nx-commands)
+- [Environment Configuration](#environment-configuration)
+  - [OpenAI API Key](#openai-api-key-required-for-transcription)
+- [Project Structure](#project-structure)
+  - [Architecture Layers](#architecture-layers)
+  - [Architecture Rationale](#architecture-rationale)
+- [Future Improvements](#future-improvements)
+  - [Infrastructure](#infrastructure)
+  - [Code Quality](#code-quality)
+  - [Product Features](#product-features)
 
-To run the dev server for your app, use:
+## Tech Stack
 
-```sh
-npx nx serve client
+- **Frontend**: React 19, Vite, Tailwind CSS
+- **Backend**: NestJS, Express
+- **Monorepo**: Nx
+- **Package Manager**: Yarn 4
+
+## Setup
+
+```bash
+# If using nvm
+nvm use # Use node.js 22 from .nvmrc
+
+# Enable corepack
+corepack enable
+corepack up
+
+# Install dependencies
+yarn
 ```
 
-To create a production bundle:
+## Development
 
-```sh
-npx nx build client
+```bash
+# Start client (React + Vite)
+yarn client
+
+# Start server (NestJS)
+yarn server
 ```
 
-To see all available targets to run for a project, run:
+### Nx Commands
 
-```sh
-npx nx show project client
+```bash
+# Visualize project dependencies
+nx graph
+
+# Run specific project
+nx serve client
+nx serve server
+
+# Build specific project
+nx build client
+nx build server
+
+# Run tests
+nx test client
+nx test server
+
+# Lint specific project
+nx lint client
+nx lint server
+
+# Show affected projects
+nx affected:graph
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+> **Note**: If you get `nx: command not found`, use `npx nx` or `yarn nx` instead of just `nx`
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Environment Configuration
 
-## Add new projects
+### Development
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+- Client: `http://localhost:4200`
+- Server: `http://localhost:3000`
 
-Use the plugin's generator to create new projects.
+### Production
 
-To generate a new application, use:
+Set in `.env`:
 
-```sh
-npx nx g @nx/react:app demo
+```bash
+SERVER_BASE_URL=https://yourdomain.com
 ```
 
-To generate a new library, use:
+### OpenAI API Key (Required for Transcription)
 
-```sh
-npx nx g @nx/react:lib mylib
+To enable transcription features, you need to:
+
+1. **Add funds**: Deposit minimum $5 to your OpenAI account
+2. **Get API key**: Visit [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+3. **Set environment variable**:
+
+```bash
+OPENAI_API_KEY=your_api_key_here
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## Project Structure
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+This is an Nx monorepo with a well-organized architecture that separates concerns and enables code sharing:
 
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
+```
+waterflies/
+├── 📱 apps/                          # Applications (entry points)
+│   ├── client/                       # 🌐 React 19 Frontend (Vite + Tailwind)
+│   ├── server/                       # 🚀 NestJS Backend (Express + Webpack)
+│   └── server-e2e/                   # 🧪 E2E Tests for Server
+│
+├── 📦 packages/                      # Shared Libraries
+│   ├── client/                       # 🎨 Frontend Libraries
+│   │   ├── components/               # 🧩 Reusable UI Components
+│   │   ├── hooks/                    # 🪝 Custom React Hooks
+│   │   ├── screens/                  # 📄 Page-level Components
+│   │   └── services/                 # 🔌 API Services & Client Logic
+│   │
+│   ├── server/                       # ⚙️ Backend Libraries
+│   │   ├── controllers/              # 🎮 HTTP Request Handlers
+│   │   ├── services/                 # 🔧 Business Logic & Data Processing
+│   │   └── modules/                  # 📦 Feature Modules & DI
+│   │
+│   └── shared/                       # 🤝 Cross-platform Libraries
+│       ├── utils/                    # 🛠️ Common Utility Functions
+│       └── constants/                # 📋 App Constants & Configuration
+│
+└── 📁 dist/                          # 🏗️ Build Output
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+### Architecture Layers
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+**🎯 Applications Layer** (`apps/`)
+- **Client**: User-facing React application with modern tooling
+- **Server**: API backend with NestJS framework
+- **E2E**: Automated testing for complete user flows
 
-### Step 2
+**🔧 Libraries Layer** (`packages/`)
+- **Client Libraries**: Frontend-specific reusable code
+- **Server Libraries**: Backend-specific business logic
+- **Shared Libraries**: Cross-platform utilities and constants
 
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
+**📊 Dependencies Flow**
+```
+client → client/* → shared/*
+server → server/* → shared/*
 ```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Architecture Rationale
 
-## Install Nx Console
+**Why this structure?**
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+1. **Separation of Concerns**: Clear boundaries between frontend, backend, and shared code
+2. **Code Reusability**: Shared utilities and constants prevent duplication
+3. **Scalability**: Easy to add new applications (mobile, admin panel) or libraries
+4. **Type Safety**: Shared types ensure consistency between client and server
+5. **Independent Development**: Teams can work on different parts without conflicts
+6. **Optimized Builds**: Nx's dependency graph ensures only affected code is rebuilt
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+**Development Experience Benefits:**
 
-## Useful links
+- `yarn client` and `yarn server` run both environments seamlessly
+- Hot reloading and fast builds through Nx's caching
+- Shared code changes automatically update dependent projects
+- Consistent tooling (ESLint, TypeScript) across all packages
 
-Learn more:
+## Future Improvements
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Infrastructure
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Add authentication (JWT + session persistence)
+- Implement a database layer (PostgreSQL + Prisma)
+- Add comprehensive monitoring and logging
+- Set up CI/CD pipelines with automated testing
+- Implement containerization with Docker
+- Add load balancing and horizontal scaling
+
+### Code Quality
+
+- Add E2E tests using Playwright
+- Implement unit tests for all libraries
+- Add integration tests for API endpoints
+- Set up code coverage reporting
+- Implement automated code quality gates
+- Add performance testing and optimization
+- Add Zod for input validation and type safety
+- Implement rate limiting with Redis
+- Add async transcription processing
+
+### Product Features
+
+- Implement real-time communication with WebRTC + WebSocket signaling
+- Improve SEO and metadata for production deployment
