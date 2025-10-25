@@ -20,12 +20,17 @@ This is a **Fireflies clone** built for an engineering assessment. It records me
 - **1-minute limit**: Stops automatically to save on API costs ($5 budget)
 - **No video**: Audio only to keep it simple
 
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/56c91014-d875-4df8-abd3-ac47a941cc00" />
+
 ### 📊 Screen 2: Results
 - **Loading**: Shows skeleton while processing your audio
 - **Transcription**: Full text of what was said (left side)
 - **Summary**: AI-generated meeting summary (right side)
 - **Action items**: Tasks and next steps extracted automatically
 - **New call**: Button to start over
+
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/23ae186e-cc59-4747-83c9-59b10535883b" />
+
 
 ## ✨ Key Features
 
