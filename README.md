@@ -53,6 +53,7 @@ This is a **Fireflies clone** built for an engineering assessment. It records me
 
 - **Frontend**: React 19, Vite, Tailwind CSS
 - **Backend**: NestJS, Express
+- **Runtime**: Node.js 22
 - **Monorepo**: Nx
 - **Package Manager**: Yarn 4
 
