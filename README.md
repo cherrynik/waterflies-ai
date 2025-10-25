@@ -1,68 +1,96 @@
-# 🦋 Waterflies - Nx Monorepo
+# 🦋 Waterflies - Fireflies Clone
 
-Live Demo:
+> **Engineering Assessment Project** - A simplified replica of the Fireflies product for meeting recording, transcription, and AI-powered summarization.
 
-- IP: https://178.62.252.10
-- Domain: https://waterflies.cherrynik.com
+## 🚀 Live Demo
 
-## Table of Contents
+- **Website**: https://waterflies.cherrynik.com
+- **IP**: https://178.62.252.10
 
-- [Tech Stack](#tech-stack)
-- [Setup](#setup)
-- [Development](#development)
-  - [Nx Commands](#nx-commands)
-- [Environment Configuration](#environment-configuration)
-  - [OpenAI API Key](#openai-api-key-required-for-transcription)
-- [Project Structure](#project-structure)
-  - [Architecture Layers](#architecture-layers)
-  - [Architecture Rationale](#architecture-rationale)
-- [Future Improvements](#future-improvements)
-  - [Infrastructure](#infrastructure)
-  - [Code Quality](#code-quality)
-  - [Product Features](#product-features)
+## 📋 What This Project Does
 
-## Tech Stack
+This is a **Fireflies clone** built for an engineering assessment. It records meetings in your browser, transcribes them using AI, and creates smart summaries with action items.
+
+## 🎯 How It Works
+
+### 📱 Screen 1: Recording
+- **Three people**: You (left), WaterFlies AI (center), and a Participant (right)
+- **Auto-start**: Recording begins when you load the page
+- **Microphone control**: You can mute/unmute (others are just for show)
+- **1-minute limit**: Stops automatically to save on API costs ($5 budget)
+- **No video**: Audio only to keep it simple
+
+### 📊 Screen 2: Results
+- **Loading**: Shows skeleton while processing your audio
+- **Transcription**: Full text of what was said (left side)
+- **Summary**: AI-generated meeting summary (right side)
+- **Action items**: Tasks and next steps extracted automatically
+- **New call**: Button to start over
+
+## ✨ Key Features
+
+- 🎙️ **Browser recording**: Records audio directly in your browser (WebM format)
+- 📝 **AI transcription**: Converts speech to text using OpenAI Whisper
+- 📊 **Smart summaries**: Creates meeting summaries using GPT-4o Mini
+- ✅ **Action items**: Automatically finds tasks and next steps
+- 📱 **Mobile-friendly**: Works on phones and tablets
+- ⏱️ **1-minute limit**: Stops automatically to save money on API calls
+
+## 📚 Table of Contents
+
+- [What This Project Does](#-what-this-project-does)
+- [How It Works](#-how-it-works)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Setup](#-setup)
+- [Development](#-development)
+- [OpenAI Setup](#-openai-setup)
+- [Project Structure](#-project-structure)
+- [Time Spent](#-time-spent)
+- [Future Improvements](#-future-improvements)
+
+## 🛠️ Tech Stack
 
 - **Frontend**: React 19, Vite, Tailwind CSS
 - **Backend**: NestJS, Express
 - **Monorepo**: Nx
 - **Package Manager**: Yarn 4
 
-## Setup
+## ⚙️ Setup
 
 ```bash
-# If using nvm
-nvm use # Use node.js 22 from .nvmrc
+# Use Node.js 22
+nvm use
 
-# Enable corepack
+# Enable corepack for Yarn
 corepack enable
 corepack up
 
-# Install dependencies
+# Install all dependencies
 yarn
 ```
 
-## Development
+## 🚀 Development
 
 ```bash
-# Start client (React + Vite)
+# Start the frontend (React app)
 yarn client
 
-# Start server (NestJS)
+# Start the backend (NestJS API)
 yarn server
 ```
 
-### Nx Commands
+### 🔧 Nx Commands
 
 ```bash
-# Visualize project dependencies
+# See project structure
 nx graph
 
-# Run specific project
+# Run specific projects
 nx serve client
 nx serve server
 
-# Build specific project
+# Build projects
 nx build client
 nx build server
 
@@ -70,46 +98,33 @@ nx build server
 nx test client
 nx test server
 
-# Lint specific project
+# Check code quality
 nx lint client
 nx lint server
-
-# Show affected projects
-nx affected:graph
 ```
 
-> **Note**: If you get `nx: command not found`, use `npx nx` or `yarn nx` instead of just `nx`
+> **Note**: If you get `nx: command not found`, use `npx nx` or `yarn nx` instead
 
-## Environment Configuration
+## 🔑 OpenAI Setup
 
-### Development
+To make transcription work, you need an OpenAI API key:
 
-- Client: `http://localhost:4200`
-- Server: `http://localhost:3000`
-
-### Production
-
-Set in `.env`:
-
-```bash
-SERVER_BASE_URL=https://yourdomain.com
-```
-
-### OpenAI API Key (Required for Transcription)
-
-To enable transcription features, you need to:
-
-1. **Add funds**: Deposit minimum $5 to your OpenAI account
-2. **Get API key**: Visit [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
-3. **Set environment variable**:
+1. **Add money**: Put at least $5 in your OpenAI account
+2. **Get API key**: Go to [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+3. **Add to your `.env` file**:
 
 ```bash
 OPENAI_API_KEY=your_api_key_here
 ```
 
-## Project Structure
+### 🌐 URLs
 
-This is an Nx monorepo with a well-organized architecture that separates concerns and enables code sharing:
+- **Frontend**: http://localhost:4200
+- **Backend**: http://localhost:3000/api
+
+## 📁 Project Structure
+
+This is an Nx monorepo that keeps frontend, backend, and shared code organized:
 
 ```
 waterflies/
@@ -137,66 +152,54 @@ waterflies/
 └── 📁 dist/                          # 🏗️ Build Output
 ```
 
-### Architecture Layers
+### 🏗️ How It's Organized
 
-**🎯 Applications Layer** (`apps/`)
-- **Client**: User-facing React application with modern tooling
-- **Server**: API backend with NestJS framework
-- **E2E**: Automated testing for complete user flows
+**Applications** (`apps/`)
+- **Client**: The React app users see
+- **Server**: The NestJS API that handles requests
+- **E2E**: Tests for the whole app
 
-**🔧 Libraries Layer** (`packages/`)
-- **Client Libraries**: Frontend-specific reusable code
-- **Server Libraries**: Backend-specific business logic
-- **Shared Libraries**: Cross-platform utilities and constants
-
-**📊 Dependencies Flow**
-```
-client → client/* → shared/*
-server → server/* → shared/*
-```
-
-### Architecture Rationale
+**Libraries** (`packages/`)
+- **Client libraries**: Reusable React components and hooks
+- **Server libraries**: API controllers and business logic
+- **Shared libraries**: Common utilities and constants
 
 **Why this structure?**
+- ✅ **Clean separation**: Frontend and backend code stay separate
+- ✅ **Code reuse**: Share utilities between projects
+- ✅ **Easy to scale**: Add mobile app or admin panel later
+- ✅ **Type safety**: Shared types keep everything consistent
+- ✅ **Fast builds**: Only rebuild what changed
 
-1. **Separation of Concerns**: Clear boundaries between frontend, backend, and shared code
-2. **Code Reusability**: Shared utilities and constants prevent duplication
-3. **Scalability**: Easy to add new applications (mobile, admin panel) or libraries
-4. **Type Safety**: Shared types ensure consistency between client and server
-5. **Independent Development**: Teams can work on different parts without conflicts
-6. **Optimized Builds**: Nx's dependency graph ensures only affected code is rebuilt
+## ⏱️ Time Spent
 
-**Development Experience Benefits:**
+**Total time**: ~20 hours _(approximate, based on overall estimation)_
 
-- `yarn client` and `yarn server` run both environments seamlessly
-- Hot reloading and fast builds through Nx's caching
-- Shared code changes automatically update dependent projects
-- Consistent tooling (ESLint, TypeScript) across all packages
+- **Setup & Architecture**: ~6 hours (Getting Nx monorepo working)
+- **Frontend**: ~5 hours (UI with three user tiles, recording controls)
+- **Backend**: ~5 hours (WebM file handling, OpenAI integration)
+- **Documentation & Deployment**: ~4 hours (Deploying to test on different devices)
 
-## Future Improvements
+## 🚀 Future Improvements
 
-### Infrastructure
+### ✨ Product Features
+- Add real-time WebRTC communication
+- Add WebSocket signaling
 
-- Add authentication (JWT + session persistence)
-- Implement a database layer (PostgreSQL + Prisma)
-- Add comprehensive monitoring and logging
-- Set up CI/CD pipelines with automated testing
-- Implement containerization with Docker
-- Add load balancing and horizontal scaling
+### 🏗️ Infrastructure
+- Add user authentication (JWT + sessions)
+- Add database (PostgreSQL + Prisma)
+- Add monitoring and logging
+- Set up automated testing
+- Add Docker containers
+- Add load balancing
 
-### Code Quality
-
-- Add E2E tests using Playwright
-- Implement unit tests for all libraries
-- Add integration tests for API endpoints
-- Set up code coverage reporting
-- Implement automated code quality gates
-- Add performance testing and optimization
-- Add Zod for input validation and type safety
-- Implement rate limiting with Redis
+### 🧪 Code Quality
+- Add E2E tests with Playwright
+- Add unit tests for all libraries
+- Add API integration tests
+- Add code coverage reports
+- Add input validation with Zod
+- Add rate limiting with Redis
 - Add async transcription processing
 
-### Product Features
-
-- Implement real-time communication with WebRTC + WebSocket signaling
-- Improve SEO and metadata for production deployment
