@@ -208,6 +208,9 @@ waterflies/
 - Set up automated testing
 - Add Docker containers
 - Add load balancing
+- Add Swagger/OpenAPI documentation for API integration
+- Add API versioning and rate limiting
+- Add webhook support for third-party integrations
 
 ### 🧪 Code Quality
 - Add E2E tests with Playwright
